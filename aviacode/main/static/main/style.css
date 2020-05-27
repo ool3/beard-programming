@@ -1,6 +1,5 @@
 .top-bar-content{
-    flex-direction: row;
-    justify-content: space-around;
-    align-items: center;
-    color: white;
+    color: black;
+    font-size: 32px;
+    height: 250px
 }
