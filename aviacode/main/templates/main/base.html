@@ -1,4 +1,5 @@
 <!doctype html>
+{% load static %}
 <html lang="en">
   <head>
     <!-- Required meta tags -->
@@ -7,8 +8,8 @@
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-
-    <title>Hello, world!</title>
+    <link rel="stylesheet" href="{% static 'main/style.css' %}">
+    <title>{% block title %}{% endblock %} ッ</title>
   </head>
   <body>
     <!-- Navbar -->
@@ -40,8 +41,10 @@
     </span>
   </div>
 </nav>
+
   {% block content %}
   {% endblock %}
+
   <footer style="margin: 26px;">
 
     <img style="width: 40px; height: 40px;" src="https://image.flaticon.com/icons/svg/2809/2809495.svg"><font style="font-family: cursive;

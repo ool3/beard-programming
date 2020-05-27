@@ -1,0 +1,18 @@
+.top-bar-content{
+    color: #6B6B6B;
+    font-size: 54px;
+}
+
+body > div > div > a {
+    -webkit-transition: all 0.3s ease;
+    -moz-transition: all 0.3s ease;
+    -o-transition: all 0.3s ease;
+    transition: all 0.3s ease;
+}
+
+.top-bar-content:hover{
+    color: black;
+    -webkit-transform: scale(1.05);
+    -ms-transform: scale(1.05);
+    transform: scale(1.05);
+}
