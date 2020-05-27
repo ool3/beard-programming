@@ -17,7 +17,6 @@ class Category(models.Model):
 class Task(models.Model):
 	article = models.CharField('Название', max_length=120)
 	lvl = models.CharField('Уровень', max_length=100)
-	author = models.ForeignKey(User, on_delete=models.CASCADE)
 	textarea = models.TextField(max_length=5600)
 	post_date = models.DateField("Date", default=datetime.date.today)
 	likes = models.ManyToManyField(User, related_name='blog_post')
