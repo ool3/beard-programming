@@ -1,5 +1,6 @@
 .top-bar-content{
-    color: #6B6B6B;
+    text-decoration: none;
+    color: #6C757D;
     font-size: 54px;
 }
 
@@ -11,8 +12,65 @@ body > div > div > a {
 }
 
 .top-bar-content:hover{
+    text-decoration: none;
     color: black;
     -webkit-transform: scale(1.05);
     -ms-transform: scale(1.05);
     transform: scale(1.05);
+}
+
+.task_bar{
+    min-height: 600px;
+    border-radius: 15px;
+}
+
+.code_bar{
+    min-height: 600px;
+}
+
+.task_name{
+    margin: 10px;
+    padding-bottom: 25px;
+    padding-top: 20px;
+    padding-right: 30px;
+    padding-left: 30px;
+    border-radius: 20px;
+    background-color: #6C757D;
+    color: white;
+    justify-content: center;
+    text-align: center;
+    font-size: 32px;
+}
+
+.bottom-code-bar{
+    text-decoration: none;
+    background-color: #6C757D;
+    color: white;
+    font-size: 16px;
+    justify-content: center;
+    text-align: center;
+    padding: 10px;
+    margin: 10px;
+    border-radius: 8px;
+}
+
+
+body > div > div > div > div > a {
+    -webkit-transition: all 0.2s ease;
+    -moz-transition: all 0.2s ease;
+    -o-transition: all 0.2s ease;
+    transition: all 0.2s ease;
+}
+
+.bottom-code-bar:hover{
+    text-decoration: none;
+    background-color: #7F8A94;
+    color: white;
+    -webkit-transform: scale(0.98);
+    -ms-transform: scale(0.98);
+    transform: scale(0.98);
+}
+
+.task_text{
+    font-size: large;
 }
