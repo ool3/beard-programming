@@ -20,6 +20,18 @@
                     </div>
                 </div>
                 </div>
+            {% if liked %}
+            <form action="{% url 'like_post' post.pk %}" method="POST">
+                {% csrf_token %}
+                <button type="submit" name="post_id" value="{{ post.id }}" class="btn       btn-outline-danger">Unlike</button> - {{ total_likes }} Likes
+            </form>
+            
+        {% else %}
+            <form action="{% url 'like_post' post.pk %}" method="POST">
+                {% csrf_token %}
+                <button type="submit" name="post_id" value="{{ post.id }}" class="btn       btn-outline-warning">Like</button> - {{ total_likes }} Likes
+            </form>
+        {% endif %}
             <div class="col-md-6 code_bar">
                 <div class="row task_name">
                     Максимальная сумма кратная 120

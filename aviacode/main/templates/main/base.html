@@ -14,12 +14,16 @@
   <body>
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <a style="
+    font-family: cursive;" class="navbar-brand" href="#"><img src="https://image.flaticon.com/icons/svg/2809/2809495.svg" width="30" height="30" class="d-inline-block align-top" alt="">
+    AirCode</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
+
       <li class="nav-item active">
         <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
       </li>
@@ -36,20 +40,28 @@
       </li>
 
     </ul>
-    <span>
-        <a class="btn btn-warning my-2 my-sm-0" href="{% url 'register' %}">Зарегистрироваться</a>
-    </span>
+    {% if user.is_authenticated %}
+      <span>
+          <a class="btn btn-warning my-2 my-sm-0" href="#">Аккаунт</a>
+      </span>
+    {% else %}
+      <span>
+          <a class="btn btn-warning my-2 my-sm-0" href="{% url 'register' %}">Зарегистрироваться</a>
+      </span>
+    {% endif %}
   </div>
 </nav>
+{% if user.is_authenticated %}
+<div class="alert alert-success alert-dismissible fade show" role="alert">
+  <strong>Вы зарегестрировались!</strong>  Поздравляю, теперь у вас открылись дополнительные функции!<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+{% endif %}
 
   {% block content %}
   {% endblock %}
 
-  <footer style="margin: 26px;">
-
-    <img style="width: 40px; height: 40px;" src="https://image.flaticon.com/icons/svg/2809/2809495.svg"><font style="font-family: cursive;
-">AviaCode</font>
-  </footer>
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
