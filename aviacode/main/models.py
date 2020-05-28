@@ -26,7 +26,7 @@ class Task(models.Model):
        	# считаем лайки
 
 	def __str__(self):
-		return '{} -- {} -- {}'.format(self.article, self.author, self.likes)
+		return '{} -- {}'.format(self.article, self.likes)
 
 class Comment(models.Model):
     article = models.ForeignKey(Task, on_delete=models.CASCADE)

@@ -1,6 +1,9 @@
 from django.shortcuts import render
 from .models import *
 from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
+from django.urls import reverse_lazy, reverse
+from django.shortcuts import render, get_object_or_404
+from django.http import HttpResponseRedirect  , Http404
 # Create your views here.
 class HomeView(ListView):
     model = Task
@@ -23,11 +26,15 @@ class TaskDetailView(DetailView):
         context = super(TaskDetailView, self).get_context_data(*args, **kwargs)
         stuff = get_object_or_404(Task, id=self.kwargs['pk']) # получаем id поста
         total_likes = stuff.total_likes()
+        article = stuff.article
+        textarea = stuff.textarea
         liked = False
         if stuff.likes.filter(id=self.request.user.id).exists():
             liked = True
         context['total_likes'] = total_likes
         context['liked'] = liked # context['liked'] - это для html
+        context['article'] = article
+        context['textarea'] = textarea
         return context
 
 def LikeView(request, pk):

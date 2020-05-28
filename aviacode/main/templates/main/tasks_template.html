@@ -7,34 +7,19 @@
 {% block content %}
     <div class="container-fluid">
         <div class="row justify-content-around align-items-center" style=" height: 200px">
-            <a href="#" class="top-bar-content">EASY</a>
-            <a href="#" class="top-bar-content">SOMEWHAT</a>
-            <a href="#" class="top-bar-content">HARD</a>
+            <a href="#" class="top-bar-content" style="color: #59a959;">EASY</a>
+            <a href="#" class="top-bar-content" style="color: #e4be77;">SOMEWHAT</a>
+            <a href="#" class="top-bar-content" style="color: #e66d6d;">HARD</a>
         </div>
         <div class="row justify-content-around">
             <div class="col-md-5 task_bar">
-                <div class="Task-Description">
-                    <div class="task_text">
-                        <span><span>На вход программы поступает последовательность из </span><img class="Formula Formula_img" style="vertical-align:-.28ex;height:1.523ex;width:1.155ex" src="https://yastatic.net/s3/edu/tex/7b8b965ad4bca0e41ab51de7b31363a1.svg"><span> целых положительных чисел. Рассматриваются все пары элементов последовательности </span><img class="Formula Formula_img" style="vertical-align:-.555ex;height:1.799ex;width:1.911ex" src="https://yastatic.net/s3/edu/tex/d8dd7d0f3eb7145ca41c711457b7eb8f.svg"><span> и </span><img class="Formula Formula_img" style="vertical-align:-.83ex;height:2.074ex;width:2.621ex" src="https://yastatic.net/s3/edu/tex/1cb4465cc10b21c84fde2a3e8741aa0c.svg"><span> такие что </span><img class="Formula Formula_img" style="vertical-align:-.693ex;height:2.349ex;width:4.511ex" src="https://yastatic.net/s3/edu/tex/23cc7fb43c8e28748be8b74e934a7405.svg"><span> и </span><img class="Formula Formula_img" style="vertical-align:-.83ex;height:2.349ex;width:6.832ex" src="https://yastatic.net/s3/edu/tex/22f44b1d4ddefc33741e9f063bf9c348.svg"><span> (первый элемент пары больше второго; </span><img class="Formula Formula_img" style="vertical-align:-.28ex;height:1.936ex;width:.723ex" src="https://yastatic.net/s3/edu/tex/865c0c0b4ab0e063e5caa3387c1a8741.svg"><span> и </span><img class="Formula Formula_img" style="vertical-align:-.693ex;margin-left;height:2.349ex;width:.941ex" src="https://yastatic.net/s3/edu/tex/363b122c528f54df4a0446b6bab05515.svg"><span> – порядковые номера чисел в последовательности входных данных). Среди пар, удовлетворяющих этому условию, необходимо найти и напечатать пару с максимальной суммой элементов, которая делится на </span><img class="Formula Formula_img" style="vertical-align:-.28ex;height:2.074ex;width:8.602ex" src="https://yastatic.net/s3/edu/tex/368f4409b7d0c06ef5a0a430e057be22.svg"><span> Если среди найденных пар максимальную сумму имеют несколько, то можно напечатать любую из них. </span></span></div><div class="Row Row_gapTop_l"><h4 class="Title Title_level_4 TaskBlock-Caption"><span class="Text Text_size_m">Описание входных и выходных данных</span></h4></div><div class="Text Text_size_m TaskBlock TaskBlock_type_text"><span><span>В первой строке входных данных задаётся количество чисел </span><img class="Formula Formula_img" style="vertical-align:-.28ex;height:1.523ex;width:1.155ex" src="https://yastatic.net/s3/edu/tex/7b8b965ad4bca0e41ab51de7b31363a1.svg"><span> </span><img class="Formula Formula_img" style="vertical-align:-.693ex;height:2.487ex;width:16.026ex" src="https://yastatic.net/s3/edu/tex/16952eb9ed3844ba491a070c6d863785.svg"><span> В каждой из последующих </span><img class="Formula Formula_img" style="vertical-align:-.28ex;height:1.523ex;width:1.155ex" src="https://yastatic.net/s3/edu/tex/7b8b965ad4bca0e41ab51de7b31363a1.svg"><span> строк записано одно целое положительное число, не превышающее </span><img class="Formula Formula_img" style="vertical-align:-.28ex;height:2.074ex;width:6.394ex" src="https://yastatic.net/s3/edu/tex/c7f3df9ca844c1334e8d73fd2eeee31c.svg"></span></div><div class="Text Text_size_m TaskBlock TaskBlock_type_text"><span><span>В качестве результата программа должна напечатать элементы искомой пары. Если таких пар несколько, можно вывести любую из них. Гарантируется, что хотя бы одна такая пара в последовательности есть.</span></span></div><div class="Text Text_size_m TaskBlock TaskBlock_type_text"><span><span><i>Пример входных данных</i></span></span></div><div class="Text Text_size_m TaskBlock TaskBlock_type_text"><span><img class="Formula Formula_img" style="vertical-align:-.28ex;height:2.074ex;width:1.162ex" src="https://yastatic.net/s3/edu/tex/1679091c5a880faf6fb5e6087eb1b2dc.svg"><span><br></span><img class="Formula Formula_img" style="vertical-align:-.28ex;height:2.074ex;width:2.325ex" src="https://yastatic.net/s3/edu/tex/072b030ba126b2f4b2374f342be9ed44.svg"><span><br></span><img class="Formula Formula_img" style="vertical-align:-.28ex;height:2.074ex;width:3.487ex" src="https://yastatic.net/s3/edu/tex/1385974ed5904a438616ff7bdb3f7439.svg"><span><br></span><img class="Formula Formula_img" style="vertical-align:-.28ex;height:2.074ex;width:2.325ex" src="https://yastatic.net/s3/edu/tex/7f39f8317fbdb1988ef4c628eba02591.svg"><span><br></span><img class="Formula Formula_img" style="vertical-align:-.28ex;height:2.074ex;width:3.487ex" src="https://yastatic.net/s3/edu/tex/f899139df5e1059396431415e770c6dd.svg"><span><br></span><img class="Formula Formula_img" style="vertical-align:-.28ex;height:2.074ex;width:3.487ex" src="https://yastatic.net/s3/edu/tex/94f6d7e04a4d452035300f18b984988c.svg"><span><br></span><img class="Formula Formula_img" style="vertical-align:-.28ex;height:2.074ex;width:2.325ex" src="https://yastatic.net/s3/edu/tex/093f65e080a295f8076b1c5722a46aa2.svg"></span></div><div class="Text Text_size_m TaskBlock TaskBlock_type_text"><span><span><i>Пример выходных данных для приведённого выше примера входных данных:<br></i></span></span></div><div class="Text Text_size_m TaskBlock TaskBlock_type_text"><span><img class="Formula Formula_img" src="https://yastatic.net/s3/edu/tex/1385974ed5904a438616ff7bdb3f7439.svg" style="vertical-align: -0.28ex; height: 2.074ex; width: 3.487ex;"><span> </span><img class="Formula Formula_img" src="https://yastatic.net/s3/edu/tex/f899139df5e1059396431415e770c6dd.svg" style="vertical-align: -0.28ex; height: 2.074ex; width: 3.487ex;"></span></div><div class="Text Text_size_m TaskBlock TaskBlock_type_text"><span><span>
-                        </span></span>
-                    </div>
-                </div>
-                </div>
-            {% if liked %}
-            <form action="{% url 'like_post' post.pk %}" method="POST">
-                {% csrf_token %}
-                <button type="submit" name="post_id" value="{{ post.id }}" class="btn       btn-outline-danger">Unlike</button> - {{ total_likes }} Likes
-            </form>
-            
-        {% else %}
-            <form action="{% url 'like_post' post.pk %}" method="POST">
-                {% csrf_token %}
-                <button type="submit" name="post_id" value="{{ post.id }}" class="btn       btn-outline-warning">Like</button> - {{ total_likes }} Likes
-            </form>
-        {% endif %}
+                {% block task_text %}
+                {{textarea}}
+                {% endblock task_text %}
+            </div>
             <div class="col-md-6 code_bar">
                 <div class="row task_name">
-                    Максимальная сумма кратная 120
+                    {% block task_name %}{{article}}{% endblock task_name %}
                 </div>
                 <div class="row">
                     <a href="#" class="col bottom-code-bar">
