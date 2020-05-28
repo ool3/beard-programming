@@ -65,8 +65,8 @@ class TaskDetailView(DetailView):
         parser.save_code(request.POST.get("code"))
 
         context['result'], context['process_time'], context['output'] = parser.process_code()
-        print(parser.process_code())
-        # parser.delete_files()
+        
+        parser.delete_files()
         return render(request, self.template_name, context=context)
 
     def get(self, request, *args, **kwargs):
