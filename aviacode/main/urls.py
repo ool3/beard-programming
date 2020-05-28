@@ -1,5 +1,5 @@
 from django.urls import path, include
-from .views import *
+from .views import HomeView, TaskDetailView
 
 urlpatterns = [
     path("", HomeView.as_view(), name="home"),

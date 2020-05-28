@@ -32,10 +32,14 @@
                     <a href="#" class="col bottom-code-bar">
                         показать решение
                     </a>
-                    <a href="#" class="col bottom-code-bar">
-                        Отправить
-                    </a>
                 </div>
+                <form class="" method="post">
+                    {% csrf_token %}
+                    <textarea id="code-area" type="text" name="code"></textarea>
+                    <input class="bottom-code-bar" type="submit" value="Отправить">
+                    {% if result %}<div>Result: {{ result }}</div>{% endif %}
+                    {% if process_time %}<div>Time: {{ process_time }}</div>{% endif %}
+                    {% if output %}<div>Output: {{ output }}</div>{% endif %}
             </div>
         </div>
     </div>

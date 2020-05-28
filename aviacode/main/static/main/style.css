@@ -75,3 +75,9 @@ body > div > div > div > div > a {
 .task_text{
     font-size: large;
 }
+
+#code-area{
+    width: 100%;
+    resize: none;
+    height: 250px;
+}
