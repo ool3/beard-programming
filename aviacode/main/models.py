@@ -15,21 +15,15 @@ class Category(models.Model):
         # перемещение пользователя после добавление нового поста
         return reverse("home")
 
-
 class Task(models.Model):
-    article = models.CharField("Название", max_length=120)
-    lvl = models.CharField("Уровень", max_length=100)
+    article = models.CharField('Название', max_length=120)
+    lvl = models.CharField('Уровень', max_length=100)
     textarea = models.TextField(max_length=5600)
+    examples = models.TextField('Примеры', max_length=240)
     post_date = models.DateField("Date", default=datetime.date.today)
-    likes = models.ManyToManyField(User, related_name="blog_post")
-
-    def total_likes(self):
-        return self.likes.count()
-        # считаем лайки
 
     def __str__(self):
-        return "{} -- {}".format(self.article, self.likes)
-
+    	return '{}'.format(self.article)
 
 class Comment(models.Model):
     article = models.ForeignKey(Task, on_delete=models.CASCADE)
