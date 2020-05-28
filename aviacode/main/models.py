@@ -23,10 +23,6 @@ class Task(models.Model):
     examples = models.TextField('Примеры', max_length=240)
     post_date = models.DateField("Date", default=datetime.date.today)
 
-    def total_likes(self):
-    	return self.likes.count() 
-       	# считаем лайки
-
     def __str__(self):
     	return '{}'.format(self.article)
 
