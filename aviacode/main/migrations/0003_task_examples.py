@@ -6,14 +6,14 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('main', '0002_remove_task_author'),
+        ("main", "0002_remove_task_author"),
     ]
 
     operations = [
         migrations.AddField(
-            model_name='task',
-            name='examples',
-            field=models.CharField(default=1, max_length=240, verbose_name='Примеры'),
+            model_name="task",
+            name="examples",
+            field=models.CharField(default=1, max_length=240, verbose_name="Примеры"),
             preserve_default=False,
         ),
     ]

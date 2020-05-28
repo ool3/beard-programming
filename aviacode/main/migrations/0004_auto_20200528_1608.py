@@ -6,17 +6,14 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('main', '0003_task_examples'),
+        ("main", "0003_task_examples"),
     ]
 
     operations = [
-        migrations.RemoveField(
-            model_name='task',
-            name='likes',
-        ),
+        migrations.RemoveField(model_name="task", name="likes",),
         migrations.AlterField(
-            model_name='task',
-            name='examples',
-            field=models.TextField(max_length=240, verbose_name='Примеры'),
+            model_name="task",
+            name="examples",
+            field=models.TextField(max_length=240, verbose_name="Примеры"),
         ),
     ]

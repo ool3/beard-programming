@@ -47,7 +47,7 @@ class Parser:
         if not os.path.exists(os.path.dirname(self.code_file_path)):
             try:
                 os.makedirs(os.path.dirname(self.code_file_path))
-            except OSError as exc: # Guard against race condition
+            except OSError as exc:  # Guard against race condition
                 if exc.errno != errno.EEXIST:
                     raise
 
