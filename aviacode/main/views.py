@@ -28,22 +28,9 @@ class TaskDetailView(DetailView):
         total_likes = stuff.total_likes()
         article = stuff.article
         textarea = stuff.textarea
-        liked = False
-        if stuff.likes.filter(id=self.request.user.id).exists():
-            liked = True
+        examples = stuff.examples
         context['total_likes'] = total_likes
-        context['liked'] = liked # context['liked'] - это для html
         context['article'] = article
         context['textarea'] = textarea
+        context['examples'] = examples
         return context
-
-def LikeView(request, pk):
-    post = get_object_or_404(Post, id=request.POST.get('post_id')) 
-    # post_id - название кнопки
-    liked = False
-    if post.likes.filter(id=request.user.id).exists():
-        post.likes.remove(request.user)
-    else:
-        post.likes.add(request.user)
-        liked = True
-    return HttpResponseRedirect(reverse('task_template', args=[str(pk)]))
