@@ -1,37 +1,39 @@
-from django.shortcuts import render
-from .models import *
-from django.views.generic import ListView, DetailView, CreateView, UpdateView, DeleteView
-from django.urls import reverse_lazy, reverse
-from django.shortcuts import render, get_object_or_404
-from django.http import HttpResponseRedirect  , Http404
-# Create your views here.
-class HomeView(ListView):
-    model = Task
-    template_name = 'main/home.html'
-    cats = Category.objects.all()
-    ordering = ['-post_date']
+from django.db import models
+from django.contrib.auth.models import User
+from django.urls import reverse
+from django.contrib import admin
+import datetime
 
-    def get_context_data(self, *args, **kwargs):
-        cat_menu = Category.objects.all()
-        context = super(HomeView, self).get_context_data(*args, **kwargs)
-        context['cat_menu'] = cat_menu
-        return context
 
-class TaskDetailView(DetailView):
-    model = Task
-    template_name = 'main/tasks_template.html'
+class Category(models.Model):
+    name = models.CharField(max_length=40)
 
-    def get_context_data(self, *args, **kwargs):
-        cat_menu = Category.objects.all()
-        context = super(TaskDetailView, self).get_context_data(*args, **kwargs)
-        stuff = get_object_or_404(Task, id=self.kwargs['pk']) # получаем id поста
-        article = stuff.article
-        textarea = stuff.textarea
-        examples = stuff.examples
-        context['total_likes'] = total_likes
-        context['article'] = article
-        context['textarea'] = textarea
-        context['examples'] = examples
-        return context
+    def __str__(self):
+        return self.name
 
-		
+    def get_absolute_url(self):
+        # перемещение пользователя после добавление нового поста
+        return reverse("home")
+
+
+class Task(models.Model):
+    article = models.CharField('Название', max_length=120)
+    lvl = models.CharField('Уровень', max_length=100)
+    textarea = models.TextField(max_length=5600)
+    examples = models.TextField('Примеры', max_length=240)
+    post_date = models.DateField("Date", default=datetime.date.today)
+
+    def total_likes(self):
+    	return self.likes.count() 
+       	# считаем лайки
+
+    def __str__(self):
+    	return '{}'.format(self.article)
+
+class Comment(models.Model):
+    article = models.ForeignKey(Task, on_delete=models.CASCADE)
+    author = models.ForeignKey(User, on_delete=models.CASCADE)
+    comment_text = models.CharField(max_length=350, verbose_name="текст комментария")
+
+    def __str__(self):
+        return self.comment_text[:15]
