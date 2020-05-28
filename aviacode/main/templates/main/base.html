@@ -36,15 +36,15 @@
       </li>
 
     </ul>
-    {% if user.is_authenticated %}
-      <span>
-          <a class="btn btn-warning my-2 my-sm-0" href="#">Аккаунт</a>
-      </span>
-    {% else %}
-      <span>
-          <a class="btn btn-warning my-2 my-sm-0" href="{% url 'register' %}">Зарегистрироваться</a>
-      </span>
-    {% endif %}
+      {% if user.is_authenticated %}
+            <span>
+                <a class="btn btn-warning my-2 my-sm-0" href="#">Аккаунт</a>
+            </span>
+      {% else %}
+            <span>
+                <a class="btn btn-warning my-2 my-sm-0" href="{% url 'register' %}">      Зарегистрироваться</a>
+            </span>
+      {% endif %}
   </div>
 </nav>
 
