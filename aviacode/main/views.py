@@ -28,7 +28,6 @@ class TaskDetailView(DetailView):
         article = stuff.article
         textarea = stuff.textarea
         examples = stuff.examples
-        context['total_likes'] = total_likes
         context['article'] = article
         context['textarea'] = textarea
         context['examples'] = examples

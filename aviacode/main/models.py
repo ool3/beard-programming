@@ -15,7 +15,6 @@ class Category(models.Model):
         # перемещение пользователя после добавление нового поста
         return reverse("home")
 
-
 class Task(models.Model):
     article = models.CharField('Название', max_length=120)
     lvl = models.CharField('Уровень', max_length=100)
