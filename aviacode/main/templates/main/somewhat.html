@@ -1,0 +1,19 @@
+{% extends 'main/base.html' %}
+{% load static %}
+{% block content %}
+    <br><br>
+<div class="container justify-content-between">
+    <div class="row justify-content-center">
+        {% for item in post %}
+                <div class="card border-dark mb-3" style="max-width: 24rem; margin: 30px">
+                <div class="card-header bg-transparent border-dark" style="text-align: center;">{{item.lvl}}</div>
+                <div class="card-body text-success">
+  	                <h5 class="card-title" style="text-align: center;">{{item.article}}</h5>
+                    <p class="card-text">{{item.textarea}}</p>
+                </div>
+                <div class="card-footer bg-transparent border-dark">{{item.examples}}</div>
+                </div>
+        {%endfor%}
+    </div>
+</div>
+{% endblock %}

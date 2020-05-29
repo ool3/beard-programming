@@ -22,7 +22,7 @@ class Task(models.Model):
     article = models.CharField("Название", max_length=120)
     lvl = models.ForeignKey(Category, on_delete=models.CASCADE, related_name='postcategory')
     textarea = models.TextField(max_length=5600)
-    examples = models.TextField("Примеры", max_length=240)
+    examples = models.TextField("Примеры", max_length=2000)
     post_date = models.DateField("Date", default=datetime.date.today)
 
     def __str__(self):

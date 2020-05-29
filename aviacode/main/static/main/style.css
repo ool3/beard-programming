@@ -84,6 +84,7 @@ body > div > div > div > div > a {
 
 h1 {
     font-family: fantasy;
+    font-size: 439%;
 }
 
 
@@ -105,7 +106,7 @@ body > div > div > div > a {
     border-radius: 30px;
     border: 1px solid #FFC107;
     color: #FFC107;
-    padding: 10px 180px;
+    padding: 10px 7rem;
     text-align: center;
 }
 

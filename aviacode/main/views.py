@@ -71,14 +71,32 @@ class TaskDetailView(DetailView):
             request, self.template_name, context=self.get_context_data(*args, **kwargs)
         )
 
-
+# Это все категории 
 def posts_easy(request):
     post = Task.objects.all()
     category = Category.objects.order_by('easy')
+    a = [i for i in post if i.lvl == 'easy']
     context = {
-        'post': post,
+        'post': a,
         'category': category,
-        'title': 'Post list'
     }
     return render(request, 'main/easy.html', context)
 
+def posts_somewhat(request):
+    post = Task.objects.all()
+    category = Category.objects.order_by('somewhat')
+    context = {
+        'post': post,
+        'category': category,
+    }
+    return render(request, 'main/somewhat.html', context)
+
+def posts_hard(request):
+    post = Task.objects.all()
+    category = Category.objects.order_by('hard')
+    a = [i for i in post if i.lvl == 'hard']
+    context = {
+        'post': a,
+        'category': category,
+    }
+    return render(request, 'main/hard.html', context)
