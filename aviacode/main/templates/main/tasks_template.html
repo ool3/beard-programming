@@ -5,17 +5,8 @@
 {% endblock %}
 
 {% block content %}
-<<<<<<< HEAD
     <div class="container-fluid">
-=======
-    <div class="container-fluid justify-content-center">
-        <div class="row justify-content-around align-items-center" style=" height: 200px">
-            <a href="#" class="top-bar-content" style="color: #59a959;">EASY</a>
-            <a href="#" class="top-bar-content" style="color: #e4be77;">SOMEWHAT</a>
-            <a href="#" class="top-bar-content" style="color: #e66d6d;">HARD</a>
-        </div>
     <form class="" method="post">
->>>>>>> dd540a8faf27ea9b5ab9343a8c5d271aa46ee9f4
         <div class="row justify-content-around">
             <div class="col-md-5 task_bar">
                     {% block task_text %}
@@ -23,8 +14,7 @@
                         <br><br>
                     <div class="p-3 mb-2 bg-dark text-light" style="border-radius: 30px;">Примеры:<br>{{examples|safe}}</div>
 
-<<<<<<< HEAD
-                {% endblock task_text %}
+                
             </div>
         </div>
             </div>
@@ -41,7 +31,7 @@
                     
             
             <div class="col-md-6 code_bar">
-=======
+
                         {% endblock task_text %}
                     </div>
                 {% if result %}
@@ -55,7 +45,6 @@
                 <div class="p-3 mb-2 text-dark" style="border-radius: 18px;background-color: #acb484;">Output: {{ output }}</div>{% endif %}
             </div>
             <div class="col-md-5 code_bar">
->>>>>>> dd540a8faf27ea9b5ab9343a8c5d271aa46ee9f4
                 <div class="row task_name">
                     {% block task_name %}{{article}}{% endblock task_name %}
                 </div>
@@ -75,16 +64,13 @@
                     </a>
                     <input class="bottom-code-bar" type="submit" value="Отправить">
                 </div>
-<<<<<<< HEAD
                     
                 </form>
             </div>
         </div>
 
-=======
             </div>
         </div>
     </form>
->>>>>>> dd540a8faf27ea9b5ab9343a8c5d271aa46ee9f4
     </div>
 {% endblock %}
