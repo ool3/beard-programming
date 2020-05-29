@@ -119,3 +119,12 @@ body > div > div > div > a {
     -ms-transform: scale(0.95);
     transform: scale(0.95);
 }
+
+h5 a{
+    color: blue;
+    text-decoration: none;
+}
+h5 a:hover{
+    color: red;
+    text-decoration: none;
+}

@@ -15,8 +15,14 @@ from .code_processer.parse import Parser
 
 
 def new_tasks(request):
-    new = Task.objects.order_by('-id')[:10]
-    context = {'new': new}
+    post_easy = Task.objects.filter(lvl__name="easy").order_by('-id')[:2]
+    post_medium = Task.objects.filter(lvl__name="medium").order_by('-id')[:2]
+    post_hard = Task.objects.filter(lvl__name="hard").order_by('-id')[:2]
+    context = {
+        'post_easy': post_easy,
+        'post_medium': post_medium,
+        'post_hard': post_hard, 
+    }
     return render(request, 'main/new_tasks.html', context)
 
 def home(request):
