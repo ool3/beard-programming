@@ -29,7 +29,7 @@
           Levels
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="#">Easy</a>
+          <a class="dropdown-item" href="{% url 'easy' %}">Easy</a>
           <a class="dropdown-item" href="#">Some what</a>
           <a class="dropdown-item" href="#">Hard</a>
         </div>
@@ -44,6 +44,10 @@
             <span>
                 <a class="btn btn-warning my-2 my-sm-0" href="{% url 'register' %}">      Зарегистрироваться</a>
             </span>
+            <span>
+                <a class="btn btn-access my-2 my-sm-0" href="{% url 'login' %}">      Войти</a>
+            </span>
+
       {% endif %}
   </div>
 </nav>

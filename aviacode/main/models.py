@@ -4,11 +4,13 @@ from django.urls import reverse
 from django.contrib import admin
 import datetime
 
-
 class Category(models.Model):
     name = models.CharField(max_length=40)
 
     def __str__(self):
+        return self.name
+
+    def get_name(self):
         return self.name
 
     def get_absolute_url(self):
@@ -18,7 +20,7 @@ class Category(models.Model):
 
 class Task(models.Model):
     article = models.CharField("Название", max_length=120)
-    lvl = models.CharField("Уровень", max_length=100)
+    lvl = models.ForeignKey(Category, on_delete=models.CASCADE, related_name='postcategory')
     textarea = models.TextField(max_length=5600)
     examples = models.TextField("Примеры", max_length=240)
     post_date = models.DateField("Date", default=datetime.date.today)

@@ -70,3 +70,15 @@ class TaskDetailView(DetailView):
         return render(
             request, self.template_name, context=self.get_context_data(*args, **kwargs)
         )
+
+
+def posts_easy(request):
+    post = Task.objects.all()
+    category = Category.objects.order_by('easy')
+    context = {
+        'post': post,
+        'category': category,
+        'title': 'Post list'
+    }
+    return render(request, 'main/easy.html', context)
+
