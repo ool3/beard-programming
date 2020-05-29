@@ -5,7 +5,8 @@
 {% endblock %}
 
 {% block content %}
-    <div class="container-fluid">
+<br><br>
+    <div class="container-fluid justify-content-center">
     <form class="" method="post">
         <div class="row justify-content-around">
             <div class="col-md-5 task_bar">
@@ -13,24 +14,6 @@
                     <div class="p-3 mb-2 bg-light text-dark" style="border-radius: 18px;">{{textarea}}
                         <br><br>
                     <div class="p-3 mb-2 bg-dark text-light" style="border-radius: 30px;">Примеры:<br>{{examples|safe}}</div>
-
-                
-            </div>
-        </div>
-            </div>
-            </div>
-            <form class="" method="post">
-            {% if result %}
-            <div class="p-3 mb-2 text-dark" style="border-radius: 18px;background-color: #c28d8d;">
-                    Result: {{ result }}{% endif %}
-            </div>
-            {% if process_time %}
-            Time: {{ process_time }}{% endif %}
-            {% if output %}
-            <div class="p-3 mb-2 text-dark" style="border-radius: 18px;background-color: #acb484;">Output: {{ output }}{% endif %}</div>
-                    
-            
-            <div class="col-md-6 code_bar">
 
                         {% endblock task_text %}
                     </div>
@@ -64,11 +47,6 @@
                     </a>
                     <input class="bottom-code-bar" type="submit" value="Отправить">
                 </div>
-                    
-                </form>
-            </div>
-        </div>
-
             </div>
         </div>
     </form>
