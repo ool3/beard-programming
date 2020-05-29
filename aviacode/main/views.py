@@ -14,17 +14,13 @@ from django.http import HttpResponseRedirect, Http404
 from .code_processer.parse import Parser
 
 
-class HomeView(ListView):
-    model = Task
-    template_name = "main/home.html"
-    cats = Category.objects.all()
-    ordering = ["-post_date"]
+def new_tasks(request):
+    new = Task.objects.order_by('-id')[:10]
+    context = {'new': new}
+    return render(request, 'main/new_tasks.html', context)
 
-    def get_context_data(self, *args, **kwargs):
-        cat_menu = Category.objects.all()
-        context = super(HomeView, self).get_context_data(*args, **kwargs)
-        context["cat_menu"] = cat_menu
-        return context
+def home(request):
+    return render(request, 'main/home.html')
 
 
 class TaskDetailView(DetailView):
@@ -71,32 +67,24 @@ class TaskDetailView(DetailView):
             request, self.template_name, context=self.get_context_data(*args, **kwargs)
         )
 
-# Это все категории 
+# Это все категории
 def posts_easy(request):
-    post = Task.objects.all()
-    category = Category.objects.order_by('easy')
-    a = [i for i in post if i.lvl == 'easy']
+    post = Task.objects.filter(lvl__name="easy")
     context = {
-        'post': a,
-        'category': category,
+        'post': post,
     }
     return render(request, 'main/easy.html', context)
 
 def posts_somewhat(request):
-    post = Task.objects.all()
-    category = Category.objects.order_by('somewhat')
+    post = Task.objects.filter(lvl__name="somewhat")
     context = {
         'post': post,
-        'category': category,
     }
     return render(request, 'main/somewhat.html', context)
 
 def posts_hard(request):
-    post = Task.objects.all()
-    category = Category.objects.order_by('hard')
-    a = [i for i in post if i.lvl == 'hard']
+    post = Task.objects.filter(lvl__name="hard")
     context = {
-        'post': a,
-        'category': category,
+        'post': post,
     }
     return render(request, 'main/hard.html', context)

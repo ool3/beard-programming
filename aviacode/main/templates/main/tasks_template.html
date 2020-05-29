@@ -6,11 +6,6 @@
 
 {% block content %}
     <div class="container-fluid">
-        <div class="row justify-content-around align-items-center" style=" height: 200px">
-            <a href="#" class="top-bar-content" style="color: #59a959;">EASY</a>
-            <a href="#" class="top-bar-content" style="color: #e4be77;">SOMEWHAT</a>
-            <a href="#" class="top-bar-content" style="color: #e66d6d;">HARD</a>
-        </div>
         <div class="row justify-content-around">
             <div class="col-md-5 task_bar">
                 {% block task_text %}
@@ -19,6 +14,9 @@
                 <div class="p-3 mb-2 bg-dark text-light" style="border-radius: 30px;">Примеры:<br>{{examples|safe}}</div>
 
                 {% endblock task_text %}
+            </div>
+        </div>
+            </div>
             </div>
             <form class="" method="post">
             {% if result %}
@@ -29,7 +27,7 @@
             Time: {{ process_time }}{% endif %}
             {% if output %}
             <div class="p-3 mb-2 text-dark" style="border-radius: 18px;background-color: #acb484;">Output: {{ output }}{% endif %}</div>
-                    </div>
+                    
             
             <div class="col-md-6 code_bar">
                 <div class="row task_name">
@@ -50,9 +48,10 @@
                     </a>
                     <input class="bottom-code-bar" type="submit" value="Отправить">
                 </div>
-                
+                    
                 </form>
             </div>
         </div>
+
     </div>
 {% endblock %}
