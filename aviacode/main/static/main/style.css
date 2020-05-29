@@ -14,7 +14,7 @@ body > div > div > a {
 .top-bar-content:hover{
     text-decoration: none;
     color: black;
-    text-shadow: 0px 0px 4px black;
+    text-shadow: 0 0 4px black;
     -webkit-transform: scale(1.05);
     -ms-transform: scale(1.05);
     transform: scale(1.05);
@@ -84,4 +84,37 @@ body > div > div > div > div > a {
 
 h1 {
     font-family: fantasy;
+}
+
+
+.home-page-mid-bar{
+    background-color: rgba(0, 0, 0, 0.3);
+    color: white;
+    box-shadow: 0 0 8px 4px rgba(0, 0, 0, 0.5);
+    min-height: 1000px;
+}
+
+
+body > div > div > div > a {
+    -webkit-transition: all 0.3s ease;
+    -moz-transition: all 0.3s ease;
+    -o-transition: all 0.3s ease;
+    transition: all 0.3s ease;
+}
+.home-page-button{
+    border-radius: 30px;
+    border: 1px solid #FFC107;
+    color: #FFC107;
+    padding: 10px 180px;
+    text-align: center;
+}
+
+.home-page-button:hover{
+    background-color:#FFC107;
+    box-shadow: 0 0 10px rgba(255, 193, 7, 0.5), 0 0 40px rgba(255, 193, 7, 0.5), 0 0 80px rgba(255, 193, 7, 0.5);
+    color: black;
+    text-decoration: none;
+    -webkit-transform: scale(0.95);
+    -ms-transform: scale(0.95);
+    transform: scale(0.95);
 }
