@@ -45,20 +45,26 @@ class TaskDetailView(DetailView):
         article = stuff.article
         textarea = stuff.textarea
         examples = stuff.examples
+        tests = stuff.tests
         context["article"] = article
         context["textarea"] = textarea
         context["examples"] = examples
+        context["tests"] = tests
         return context
 
     def post(self, request, *args, **kwargs):
         context = self.get_context_data(*args, **kwargs)
 
-        username = None
         if request.user.is_authenticated:
             username = request.user.username
+        else:
+            username = None
 
         parser = Parser(username)
-        parser.save_code(request.POST.get("code"))
+        code = request.POST.get("code")
+        asserts = context["tests"].asserts
+        code_with_asserts = f'{code}\n\n{asserts}'
+        parser.save_code(code_with_asserts)
 
         (
             context["result"],
