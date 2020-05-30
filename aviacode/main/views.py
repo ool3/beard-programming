@@ -49,7 +49,7 @@ class TaskDetailView(DetailView):
         context["article"] = article
         context["textarea"] = textarea
         context["examples"] = examples
-        context["tests"] = tests
+        context["asserts"] = tests.asserts
         return context
 
     def post(self, request, *args, **kwargs):
@@ -62,9 +62,11 @@ class TaskDetailView(DetailView):
 
         parser = Parser(username)
         code = request.POST.get("code")
-        asserts = context["tests"].asserts
+        asserts = context["asserts"]
         code_with_asserts = f'{code}\n\n{asserts}'
         parser.save_code(code_with_asserts)
+
+        context["code"] = code
 
         (
             context["result"],
