@@ -65,7 +65,7 @@ class TaskDetailView(DetailView):
         parser = Parser(username)
         code = request.POST.get("code")
         asserts = context["asserts"]
-        code_with_asserts = f'{code}\n\n{asserts}'
+        code_with_asserts = f"{code}\n\n{asserts}"
         parser.save_code(code_with_asserts)
 
         context["code"] = code
@@ -80,7 +80,12 @@ class TaskDetailView(DetailView):
         MEM = 0
 
         if context["result"] is None:
-            context["rating"] = rating.count(context["process_time"], context["tests"].etalon_time, context["tests"].etalon_memory, MEM)
+            context["rating"] = rating.count(
+                context["process_time"],
+                context["tests"].etalon_time,
+                MEM,
+                context["tests"].etalon_memory,
+            )
         else:
             context["rating"] = "F"
 

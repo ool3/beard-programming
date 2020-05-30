@@ -22,13 +22,16 @@
                         </div>
                     {% if result %}
                     <div class="p-3 mb-2 text-dark" style="border-radius:   18px;background-color: #c28d8d;">
-                            Result: {{ result }}
+                            Ошибка: {{ result }}
                     </div>
                     {% endif %}
                     {% if process_time %}
-                    <div class="p-3 mb-2 text-dark" style="border-radius:   18px;background-color: #bcbe4a;">Time: {{ process_time }}</div>{% endif %}
+                    <div class="p-3 mb-2 text-dark" style="border-radius:   18px;background-color: #bcbe4a;">Время выполнения: {{ process_time }} сек</div>{% endif %}
                     {% if output %}
-                    <div class="p-3 mb-2 text-dark" style="border-radius:   18px;background-color: #acb484;">Output: {{ output }}</div>{% endif %}
+                    <div class="p-3 mb-2 text-dark" style="border-radius:   18px;background-color: #acb484;">Принты: {{ output }}</div>{% endif %}
+
+                    <div class="p-3 mb-2 text-dark" style="border-radius:   18px;background-color: {% if rating == 'F'  %}#c28d8d;{% endif %} {% if rating == 'E'  %}#F1C40F;{% endif %} {% if rating == 'D'  %}#48C9B0;{% endif %} {% if rating == 'C'  %}#229954;{% endif %} {% if rating == 'B'  %}#229954;{% endif %} {% if rating == 'A'  %}#239B56;{% endif %}">Оценка: {{ rating }}</div>
+
                 </div>
                 <div class="col-md-5 code_bar">
                     <div class="row task_name">

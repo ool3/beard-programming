@@ -22,10 +22,10 @@ class Category(models.Model):
 class Test(models.Model):
     title = models.CharField("Название", max_length=120)
     asserts = models.TextField("Входные данные", blank=True, max_length=2000)
-    etalon_time = models.FloatField(
-        "Эталонное время", default=datetime.date.today)
+    etalon_time = models.FloatField("Эталонное время", default=datetime.date.today)
     etalon_memory = models.FloatField(
-        "Эталонное использование памяти", default=datetime.date.today)
+        "Эталонное использование памяти", default=datetime.date.today
+    )
 
     def __str__(self):
         return self.title
@@ -40,7 +40,12 @@ class Task(models.Model):
     examples = models.TextField("Примеры", max_length=2000)
     post_date = models.DateField("Date", default=datetime.date.today)
     tests = models.ForeignKey(
-        Test, on_delete=models.CASCADE, related_name="Тесты", blank=True, null=True, default=None
+        Test,
+        on_delete=models.CASCADE,
+        related_name="Тесты",
+        blank=True,
+        null=True,
+        default=None,
     )
 
     def __str__(self):
@@ -50,8 +55,7 @@ class Task(models.Model):
 class Comment(models.Model):
     article = models.ForeignKey(Task, on_delete=models.CASCADE)
     author = models.ForeignKey(User, on_delete=models.CASCADE)
-    comment_text = models.CharField(
-        max_length=350, verbose_name="текст комментария")
+    comment_text = models.CharField(max_length=350, verbose_name="текст комментария")
 
     def __str__(self):
         return self.comment_text[:15]

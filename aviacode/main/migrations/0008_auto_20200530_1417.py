@@ -6,28 +6,19 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('main', '0007_auto_20200530_1412'),
+        ("main", "0007_auto_20200530_1412"),
     ]
 
     operations = [
-        migrations.RemoveField(
-            model_name='test',
-            name='_input',
-        ),
-        migrations.RemoveField(
-            model_name='test',
-            name='input_type',
-        ),
-        migrations.RemoveField(
-            model_name='test',
-            name='otput',
-        ),
+        migrations.RemoveField(model_name="test", name="_input",),
+        migrations.RemoveField(model_name="test", name="input_type",),
+        migrations.RemoveField(model_name="test", name="otput",),
         migrations.AddField(
-            model_name='test',
-            name='asserts',
-            field=models.TextField(blank=True, max_length=2000, verbose_name='Входные данные'),
+            model_name="test",
+            name="asserts",
+            field=models.TextField(
+                blank=True, max_length=2000, verbose_name="Входные данные"
+            ),
         ),
-        migrations.DeleteModel(
-            name='InputType',
-        ),
+        migrations.DeleteModel(name="InputType",),
     ]
