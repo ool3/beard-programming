@@ -57,10 +57,9 @@ class Parser:
         return self.code_file_path
 
     @timeout(TIMEOUT)
-    def process_code(self, *args) -> tuple:
+    def process_code(self) -> tuple:
         """
         process the code file
-        input tuple of arguments
         return tuple of:
                 process_result,
                 process_time in str,
@@ -85,7 +84,7 @@ class Parser:
 
             time_start = Decimal(time.perf_counter())
 
-            process_result = test_module.main(*args)
+            process_result = test_module.tests()
 
             process_time = str(Decimal(time.perf_counter()) - time_start)
 
