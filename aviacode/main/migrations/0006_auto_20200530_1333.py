@@ -8,37 +8,87 @@ import django.db.models.deletion
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('main', '0005_auto_20200529_1027'),
+        ("main", "0005_auto_20200529_1027"),
     ]
 
     operations = [
         migrations.CreateModel(
-            name='InputType',
+            name="InputType",
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('_type', models.CharField(max_length=120, verbose_name='Тип')),
+                (
+                    "id",
+                    models.AutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("_type", models.CharField(max_length=120, verbose_name="Тип")),
             ],
         ),
         migrations.AlterField(
-            model_name='task',
-            name='examples',
-            field=models.TextField(max_length=2000, verbose_name='Примеры'),
+            model_name="task",
+            name="examples",
+            field=models.TextField(max_length=2000, verbose_name="Примеры"),
         ),
         migrations.CreateModel(
-            name='Test',
+            name="Test",
             fields=[
-                ('id', models.AutoField(auto_created=True, primary_key=True, serialize=False, verbose_name='ID')),
-                ('title', models.CharField(max_length=120, verbose_name='Название')),
-                ('_input', models.CharField(blank=True, max_length=120, verbose_name='Входные данные')),
-                ('otput', models.FloatField(max_length=2000, verbose_name='Выходные данные')),
-                ('etalon_time', models.FloatField(default=datetime.date.today, verbose_name='Эталонное время')),
-                ('etalon_memory', models.FloatField(default=datetime.date.today, verbose_name='Эталонное использование памяти')),
-                ('input_type', models.ForeignKey(blank=True, on_delete=django.db.models.deletion.CASCADE, to='main.InputType', verbose_name='Тип тестов')),
+                (
+                    "id",
+                    models.AutoField(
+                        auto_created=True,
+                        primary_key=True,
+                        serialize=False,
+                        verbose_name="ID",
+                    ),
+                ),
+                ("title", models.CharField(max_length=120, verbose_name="Название")),
+                (
+                    "_input",
+                    models.CharField(
+                        blank=True, max_length=120, verbose_name="Входные данные"
+                    ),
+                ),
+                (
+                    "otput",
+                    models.FloatField(max_length=2000, verbose_name="Выходные данные"),
+                ),
+                (
+                    "etalon_time",
+                    models.FloatField(
+                        default=datetime.date.today, verbose_name="Эталонное время"
+                    ),
+                ),
+                (
+                    "etalon_memory",
+                    models.FloatField(
+                        default=datetime.date.today,
+                        verbose_name="Эталонное использование памяти",
+                    ),
+                ),
+                (
+                    "input_type",
+                    models.ForeignKey(
+                        blank=True,
+                        on_delete=django.db.models.deletion.CASCADE,
+                        to="main.InputType",
+                        verbose_name="Тип тестов",
+                    ),
+                ),
             ],
         ),
         migrations.AddField(
-            model_name='task',
-            name='tests',
-            field=models.ForeignKey(blank=True, default=None, null=True, on_delete=django.db.models.deletion.CASCADE, related_name='Тесты', to='main.Test'),
+            model_name="task",
+            name="tests",
+            field=models.ForeignKey(
+                blank=True,
+                default=None,
+                null=True,
+                on_delete=django.db.models.deletion.CASCADE,
+                related_name="Тесты",
+                to="main.Test",
+            ),
         ),
     ]
