@@ -15,18 +15,19 @@ from .code_processer.parse import Parser
 
 
 def new_tasks(request):
-    post_easy = Task.objects.filter(lvl__name="easy").order_by('-id')[:2]
-    post_medium = Task.objects.filter(lvl__name="medium").order_by('-id')[:2]
-    post_hard = Task.objects.filter(lvl__name="hard").order_by('-id')[:2]
+    post_easy = Task.objects.filter(lvl__name="easy").order_by("-id")[:2]
+    post_medium = Task.objects.filter(lvl__name="medium").order_by("-id")[:2]
+    post_hard = Task.objects.filter(lvl__name="hard").order_by("-id")[:2]
     context = {
-        'post_easy': post_easy,
-        'post_medium': post_medium,
-        'post_hard': post_hard, 
+        "post_easy": post_easy,
+        "post_medium": post_medium,
+        "post_hard": post_hard,
     }
-    return render(request, 'main/new_tasks.html', context)
+    return render(request, "main/new_tasks.html", context)
+
 
 def home(request):
-    return render(request, 'main/home.html')
+    return render(request, "main/home.html")
 
 
 class TaskDetailView(DetailView):
@@ -73,24 +74,27 @@ class TaskDetailView(DetailView):
             request, self.template_name, context=self.get_context_data(*args, **kwargs)
         )
 
+
 # Это все категории
 def posts_easy(request):
     post = Task.objects.filter(lvl__name="easy")
     context = {
-        'post': post,
+        "post": post,
     }
-    return render(request, 'main/easy.html', context)
+    return render(request, "main/easy.html", context)
+
 
 def posts_somewhat(request):
     post = Task.objects.filter(lvl__name="medium")
     context = {
-        'post': post,
+        "post": post,
     }
-    return render(request, 'main/somewhat.html', context)
+    return render(request, "main/somewhat.html", context)
+
 
 def posts_hard(request):
     post = Task.objects.filter(lvl__name="hard")
     context = {
-        'post': post,
+        "post": post,
     }
-    return render(request, 'main/hard.html', context)
+    return render(request, "main/hard.html", context)

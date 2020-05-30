@@ -1,5 +1,12 @@
 from django.urls import path, include
-from .views import new_tasks, TaskDetailView, posts_easy, posts_somewhat, posts_hard, home
+from .views import (
+    new_tasks,
+    TaskDetailView,
+    posts_easy,
+    posts_somewhat,
+    posts_hard,
+    home,
+)
 
 urlpatterns = [
     path("", home, name="home"),
