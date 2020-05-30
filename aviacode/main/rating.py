@@ -13,7 +13,4 @@ def count(p_time, e_time, p_mem, e_mem):
     elif float(p_mem) <= (e_mem * 0.75):
         reting += 1
 
-    print(p_mem)
-    print(e_mem)
-
     return reting_tablle[reting]
