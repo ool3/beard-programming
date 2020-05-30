@@ -12,6 +12,7 @@ from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponseRedirect, Http404
 
 from .code_processer.parse import Parser
+from . import rating
 
 
 def new_tasks(request):
@@ -50,6 +51,7 @@ class TaskDetailView(DetailView):
         context["textarea"] = textarea
         context["examples"] = examples
         context["asserts"] = tests.asserts
+        context["tests"] = tests
         return context
 
     def post(self, request, *args, **kwargs):
@@ -73,8 +75,15 @@ class TaskDetailView(DetailView):
             context["process_time"],
             context["output"],
         ) = parser.process_code()
-
         parser.delete_files()
+
+        MEM = 0
+
+        if context["result"] is None:
+            context["rating"] = rating.count(context["process_time"], context["tests"].etalon_time, context["tests"].etalon_memory, MEM)
+        else:
+            context["rating"] = "F"
+
         return render(request, self.template_name, context=context)
 
     def get(self, request, *args, **kwargs):

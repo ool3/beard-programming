@@ -61,7 +61,7 @@ class Parser:
         """
         process the code file
         return tuple of:
-                process_result,
+                process_result is None,
                 process_time in str,
                 process_output is  str
             if Exception return:
