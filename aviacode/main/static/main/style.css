@@ -10,6 +10,9 @@ body > div > div > a {
     -o-transition: all 0.3s ease;
     transition: all 0.3s ease;
 }
+.card_text{
+    color: black;
+}
 
 .top-bar-content:hover{
     text-decoration: none;
@@ -65,7 +68,7 @@ body > div > div > div > div > a {
 
 .bottom-code-bar:hover{
     text-decoration: none;
-    background-color: #000000a8;
+    background-color: #0000008;
     color: white;
     -webkit-transform: scale(0.98);
     -ms-transform: scale(0.98);
@@ -86,7 +89,9 @@ h1 {
     font-family: fantasy;
     font-size: 439%;
 }
-
+a:hover{
+    text-decoration: none;
+}
 
 .home-page-mid-bar{
     background-color: rgba(0, 0, 0, 0.3);
@@ -124,7 +129,11 @@ h5 a{
     color: blue;
     text-decoration: none;
 }
-h5 a:hover{
+.card_title{
+    color: red;
+}
+h5.card_title:hover{
     color: red;
     text-decoration: none;
+    text-shadow: 0px 5px 6px black;
 }

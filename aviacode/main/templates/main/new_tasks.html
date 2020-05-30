@@ -1,12 +1,12 @@
 {% extends 'main/base.html' %}
-
-{% block content %}
 {% load static %}
+{% block title %}Some tasks{% endblock %}
+{% block content %}
 <div class="container-fluid" style="background-color: darkslategray">
     <div class="container justify-content-center home-page-mid-bar">
-<div class="container-fluid">
-	<div class="row justify-content-around align-items-center" style=" height: 200px">
-	            <a href="{% url 'easy' %}" class="top-bar-content" style="color: #84c784;">EASY</a>
+		<div class="container-fluid">
+			<div class="row justify-content-around align-items-center" style=" height: 200px">
+	            <a href="{% url 'easy' %}" class="top-bar-content" style="margin: 10px; color: #84c784;">EASY</a>
 	            <a href="{% url 'somewhat' %}" class="top-bar-content" style="color: #e4be77;">MEDIUM</a>
 	            <a href="{% url 'hard' %}" class="top-bar-content" style="color: #e66d6d;">HARD</a>
 	        </div>
@@ -16,8 +16,8 @@
     <div class="row justify-content-center">
         {% for item in post_easy %}
                 <div class="card border-dark mb-3" style="max-width: 24rem; margin: 30px">
-                <div class="card-header border-dark" style="text-align: center; color: black; background-color: #9ee2b3; padding: 2%;font-size: 166%; text-shadow: 0 0 2px black;">{{item.lvl}}</div>
-                <div class="card-body" style="color: #052A6E; background-color:#FFCE73;">
+                <div class="card-header border-dark" style="text-align: center; color: black; background-color: #9ee2b3; padding: 2%;font-size: 166%; text-shadow: 0 0 1px black;">{{item.lvl}}</div>
+                <div class="card-body" style="color: black; background-color: #fce1af;">
   	                <a href="{% url 'task_template' item.pk %}"><h5 class="card-title" style="text-align: center;">{{item.article}}</h5></a>
                     <p class="card-text">{{item.textarea}}</p>
                 </div>
@@ -30,12 +30,12 @@
     <div class="row justify-content-center">
         {% for item in post_medium %}
                 <div class="card border-dark mb-3" style="max-width: 24rem; margin: 30px">
-                <div class="card-header border-dark" style="text-align: center; color: black; background-color: #c1e64e;padding: 2%;font-size: 166%; text-shadow: 0 0 2px black;">{{item.lvl}}</div>
-                <div class="card-body" style="color: #052A6E; background-color:#FFCE73;">
+                <div class="card-header border-dark" style="text-align: center; color: black; background-color: #cfe882; padding: 2%;font-size: 166%; text-shadow: 0 0 1px black;">{{item.lvl}}</div>
+                <div class="card-body" style="color: black; background-color:#fce1af;">
   	                <a href="{% url 'task_template' item.pk %}"><h5 class="card-title" style="text-align: center;">{{item.article}}</h5></a>
                     <p class="card-text">{{item.textarea}}</p>
                 </div>
-                <div style="color: black;" class="card-footer bg-transparent border-dark">{{item.examples}}</div>
+                <div style="color: black;" class="card-footer bg-transparent border-dark">{{item.examples|safe}}</div>
                 </div>
         {% endfor %}
     </div>
@@ -44,8 +44,8 @@
     <div class="row justify-content-center">
         {% for item in post_hard %}
                 <div class="card border-dark mb-3" style="max-width: 24rem; margin: 30px">
-                <div class="card-header border-dark" style="text-align: center; color: black; background-color: #c97272;padding: 2%;font-size: 166%; text-shadow: 0 0 2px black;">{{item.lvl}}</div>
-                <div class="card-body" style="color: #052A6E; background-color:#FFCE73;">
+                <div class="card-header border-dark" style="text-align: center; color: black; background-color: #c97272;padding: 2%;font-size: 166%; text-shadow: 0 0 1px black;">{{item.lvl}}</div>
+                <div class="card-body" style="color: black; background-color:#fce1af;">
   	                <a href="{% url 'task_template' item.pk %}"><h5 class="card-title" style="text-align: center;">{{item.article}}</h5></a>
                     <p class="card-text">{{item.textarea}}</p>
                 </div>
@@ -53,5 +53,7 @@
                 </div>
         {% endfor %}
     </div>
+</div>
+</div>
 </div>
 {% endblock %}

@@ -1,54 +1,61 @@
 {% extends 'main/base.html' %}
 {% load static %}
 {% block title %}
-    Задача n
+    {{article}}
 {% endblock %}
 
 {% block content %}
-<br><br>
-    <div class="container-fluid justify-content-center">
-    <form class="" method="post">
-        <div class="row justify-content-around">
-            <div class="col-md-5 task_bar">
-                    {% block task_text %}
-                    <div class="p-3 mb-2 bg-light text-dark" style="border-radius: 18px;">{{textarea}}
-                        <br><br>
-                    <div class="p-3 mb-2 bg-dark text-light" style="border-radius: 30px;">Примеры:<br>{{examples|safe}}</div>
-
-                        {% endblock task_text %}
+<div class="container-fluid" style="background-color: darkslategray">
+    <div class="container justify-content-center home-page-mid-bar">
+        <br><br>
+        <div class="container-fluid justify-content-center">
+        <form class="" method="post">
+            <div class="row justify-content-around">
+                <div class="col-md-5 task_bar">
+                        {% block task_text %}
+                        <div class="p-3 mb-2 bg-light text-dark" style="border-radius: 18px;">  {{textarea}}
+                            <br><br>
+                        <div class="p-3 mb-2 bg-dark text-light" style="border-radius: 30px;">  Примеры:<br>{{examples|safe}}</div>
+    
+                            {% endblock task_text %}
+                        </div>
+                    {% if result %}
+                    <div class="p-3 mb-2 text-dark" style="border-radius:   18px;background-color: #c28d8d;">
+                            Result: {{ result }}
                     </div>
-                {% if result %}
-                <div class="p-3 mb-2 text-dark" style="border-radius: 18px;background-color: #c28d8d;">
-                        Result: {{ result }}
+                    {% endif %}
+                    {% if process_time %}
+                    <div class="p-3 mb-2 text-dark" style="border-radius:   18px;background-color: #bcbe4a;">Time: {{ process_time }}</div>{% endif %}
+                    {% if output %}
+                    <div class="p-3 mb-2 text-dark" style="border-radius:   18px;background-color: #acb484;">Output: {{ output }}</div>{% endif %}
                 </div>
-                {% endif %}
-                {% if process_time %}
-                <div>Time: {{ process_time }}</div>{% endif %}
-                {% if output %}
-                <div class="p-3 mb-2 text-dark" style="border-radius: 18px;background-color: #acb484;">Output: {{ output }}</div>{% endif %}
-            </div>
-            <div class="col-md-5 code_bar">
-                <div class="row task_name">
-                    {% block task_name %}{{article}}{% endblock task_name %}
-                </div>
-                <div class="row">
-                    {% csrf_token %}
-                    <textarea id="code-area" type="text" name="code" style="width: 100%;height: 200px;"></textarea>
-                </div>
-                <div class="row">
-                    <a href="#" class="col bottom-code-bar">
-                        Пропустить
-                    </a>
-                    <a href="#" class="col bottom-code-bar">
-                        Комментировать
-                    </a>
-                    <a href="#" class="col bottom-code-bar">
-                        показать решение
-                    </a>
-                    <input class="bottom-code-bar" type="submit" value="Отправить">
+                <div class="col-md-5 code_bar">
+                    <div class="row task_name">
+                        {% block task_name %}{{article}}{% endblock task_name %}
+                    </div>
+                    <div class="row">
+                        {% csrf_token %}
+                        <textarea id="code-area" type="text" name="code" style="width:  100%;height: 200px;"></textarea>
+                    </div>
+                    <div class="row">
+                        <a href="#" class="col bottom-code-bar">
+                            Пропустить
+                        </a>
+                        <a href="#" class="col bottom-code-bar">
+                            Комментировать
+                        </a>
+                        <a href="#" class="col bottom-code-bar">
+                            показать решение
+                        </a>
+                        <input style="margin: 0 auto; border: none; width: 100%;" class="bottom-code-bar" type="submit" value="Отправить">
+                    </div>
                 </div>
             </div>
+        </form>
         </div>
-    </form>
+<br><br><br><br><br><br>
     </div>
+
+</div>
+
 {% endblock %}

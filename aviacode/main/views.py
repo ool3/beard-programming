@@ -82,7 +82,7 @@ def posts_easy(request):
     return render(request, 'main/easy.html', context)
 
 def posts_somewhat(request):
-    post = Task.objects.filter(lvl__name="somewhat")
+    post = Task.objects.filter(lvl__name="medium")
     context = {
         'post': post,
     }
