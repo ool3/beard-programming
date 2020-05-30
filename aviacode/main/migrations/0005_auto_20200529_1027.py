@@ -7,13 +7,17 @@ import django.db.models.deletion
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('main', '0004_auto_20200528_1608'),
+        ("main", "0004_auto_20200528_1608"),
     ]
 
     operations = [
         migrations.AlterField(
-            model_name='task',
-            name='lvl',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, related_name='postcategory', to='main.Category'),
+            model_name="task",
+            name="lvl",
+            field=models.ForeignKey(
+                on_delete=django.db.models.deletion.CASCADE,
+                related_name="postcategory",
+                to="main.Category",
+            ),
         ),
     ]

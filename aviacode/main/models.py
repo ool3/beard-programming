@@ -4,6 +4,7 @@ from django.urls import reverse
 from django.contrib import admin
 import datetime
 
+
 class Category(models.Model):
     name = models.CharField(max_length=40)
 
@@ -20,7 +21,9 @@ class Category(models.Model):
 
 class Task(models.Model):
     article = models.CharField("Название", max_length=120)
-    lvl = models.ForeignKey(Category, on_delete=models.CASCADE, related_name='postcategory')
+    lvl = models.ForeignKey(
+        Category, on_delete=models.CASCADE, related_name="postcategory"
+    )
     textarea = models.TextField(max_length=5600)
     examples = models.TextField("Примеры", max_length=2000)
     post_date = models.DateField("Date", default=datetime.date.today)
