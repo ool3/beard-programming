@@ -59,16 +59,23 @@ body > div > div > a {
 }
 
 
-body > div > div > div > div > a {
-    -webkit-transition: all 0.2s ease;
-    -moz-transition: all 0.2s ease;
-    -o-transition: all 0.2s ease;
-    transition: all 0.2s ease;
+body > div > div > div > form > div > div > div > a {
+    -webkit-transition: all 0.4s ease;
+    -moz-transition: all 0.4s ease;
+    -o-transition: all 0.4s ease;
+    transition: all 0.4s ease;
+}
+
+body > div > div > div > form > div > div > div > input {
+    -webkit-transition: all 0.4s ease;
+    -moz-transition: all 0.4s ease;
+    -o-transition: all 0.4s ease;
+    transition: all 0.4s ease;
 }
 
 .bottom-code-bar:hover{
     text-decoration: none;
-    background-color: #0000008;
+    background-color: #919DA7;
     color: white;
     -webkit-transform: scale(0.98);
     -ms-transform: scale(0.98);
@@ -136,4 +143,18 @@ h5.card_title:hover{
     color: red;
     text-decoration: none;
     text-shadow: 0px 5px 6px black;
+}
+
+
+body > div > div > div > div > div {
+    -webkit-transition: all 0.3s ease;
+    -moz-transition: all 0.3s ease;
+    -o-transition: all 0.3s ease;
+    transition: all 0.3s ease;
+}
+.task_link_bar:hover{
+   -webkit-transform: scale(1.01);
+    -ms-transform: scale(1.01);
+    transform: scale(1.01);
+    box-shadow: 0 0 8px 4px rgba(0, 0, 0, 0.7);
 }
