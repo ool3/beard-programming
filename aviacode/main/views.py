@@ -20,6 +20,7 @@ from . import rating
 progress = 0
 tasks_solve = set()
 
+
 def new_tasks(request):
     post_easy = Task.objects.filter(lvl__name="easy").order_by("-id")[:2]
     post_medium = Task.objects.filter(lvl__name="medium").order_by("-id")[:2]
@@ -35,10 +36,12 @@ def new_tasks(request):
 def home(request):
     return render(request, "main/home.html")
 
+
 def user(request):
     global progress
     context = {'progress': progress}
     return render(request, 'main/user.html', context)
+
 
 class TaskDetailView(DetailView):
     model = Task
@@ -49,7 +52,8 @@ class TaskDetailView(DetailView):
 
         context = {}
 
-        stuff = get_object_or_404(Task, id=self.kwargs["pk"])  # получаем id поста
+        stuff = get_object_or_404(
+            Task, id=self.kwargs["pk"])  # получаем id поста
 
         article = stuff.article
         textarea = stuff.textarea
@@ -85,18 +89,18 @@ class TaskDetailView(DetailView):
             context["result"],
             context["process_time"],
             context["output"],
+            context["memory"]
         ) = parser.process_code()
         parser.delete_files()
 
-        MEM = 0
-
         if context["result"] is None:
-            context["rating"] = rating.count(context["process_time"], context["tests"].etalon_time, context["tests"].etalon_memory, MEM)
+            context["rating"] = rating.count(
+                context["process_time"], context["tests"].etalon_time, context["memory"], context["tests"].etalon_memory)
             if context['output'] not in tasks_solve:
                 if str(Task.objects.get(pk=self.kwargs["pk"]).lvl) == 'easy':
                     progress += 10
                 elif str(Task.objects.get(pk=self.kwargs["pk"]).lvl) == 'medium':
-                    progress += 20 
+                    progress += 20
                 else:
                     progress += 30
                 tasks_solve.add(context['output'])
@@ -107,7 +111,8 @@ class TaskDetailView(DetailView):
 
     def get(self, request, *args, **kwargs):
         return render(
-            request, self.template_name, context=self.get_context_data(*args, **kwargs)
+            request, self.template_name, context=self.get_context_data(
+                *args, **kwargs)
         )
 
 
@@ -144,7 +149,8 @@ class TaskCommentView(DetailView):
         context = {}
 
         context["form"] = CommentForm()
-        context["comments"] = Comment.objects.filter(article__id=self.kwargs["pk"])
+        context["comments"] = Comment.objects.filter(
+            article__id=self.kwargs["pk"])
         return context
 
     def post(self, request, *args, **kwargs):
