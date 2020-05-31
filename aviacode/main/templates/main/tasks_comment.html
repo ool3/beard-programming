@@ -1,0 +1,31 @@
+{% extends 'main/base.html' %}
+{% load static %}
+{% block title %}
+    {{article}}
+{% endblock %}
+{% block content %}
+    <div class="container-fluid" style="background-color: darkslategray">
+        <div class="container justify-content-center home-page-mid-bar">
+            <br><br>
+            <div class="container-fluid justify-content-center">
+                
+                <div class="comments">
+                    {% if user.is_authenticated %}
+                        <form method="post">
+                            {% csrf_token %}
+                            {{ form }}
+                            <input type="submit" value="OK">
+                        </form>
+                    {% endif %}
+                    {% for content in comments%}
+                        <div>
+                            {{ content.author }}
+                            {{ content.comment_text }}
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+            <br><br><br><br><br><br>
+        </div>
+    </div>
+{% endblock %}

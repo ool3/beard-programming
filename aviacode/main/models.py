@@ -48,6 +48,8 @@ class Task(models.Model):
         default=None,
     )
 
+    solution = models.TextField(max_length=5600, default="")
+
     def __str__(self):
         return "{}".format(self.article)
 
