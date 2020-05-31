@@ -53,7 +53,7 @@ class TaskDetailView(DetailView):
         context["textarea"] = textarea
         context["examples"] = examples
         context["asserts"] = tests.asserts
-        context["next_task"] = kwargs["pk"]+1
+        context["next_task"] = kwargs["pk"] + 1
         return context
 
     def post(self, request, *args, **kwargs):
@@ -158,5 +158,5 @@ class TaskCommentView(DetailView):
 
 def task_solution(request, *args, **kwargs):
     correct_tusk = Task.objects.get(pk=kwargs["pk"])
-    context = {'solution': correct_tusk.solution}
+    context = {"solution": correct_tusk.solution}
     return render(request, "main/task_solution.html", context)
