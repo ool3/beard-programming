@@ -10,21 +10,26 @@
             <div class="container-fluid justify-content-center">
                 
                 <div class="comments">
-                    {% if user.is_authenticated %}
-                        <form method="post">
-                            {% csrf_token %}
-                            {{ form }}
-                            <input type="submit" value="OK">
-                        </form>
-                    {% endif %}
+                    
                     {% for content in comments%}
                         <div>
-                            {{ content.author }}
-                            {{ content.comment_text }}
+                            <blockquote class="blockquote">
+  <p class="mb-0">{{ content.comment_text }}</p>
+  <footer class="blockquote-footer"><cite title="Source Title">{{ content.author }}</cite></footer>
+</blockquote>
+                             
+                            
                         </div>
                     {% endfor %}
                 </div>
             </div>
+            {% if user.is_authenticated %}
+                        <form method="post">
+                            {% csrf_token %}
+                            {{ form }}
+                            <input class="btn btn-light" type="submit" value="Отправить">
+                        </form>
+                    {% endif %}
             <br><br><br><br><br><br>
         </div>
     </div>
