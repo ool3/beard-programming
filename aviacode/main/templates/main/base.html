@@ -41,8 +41,11 @@
 
     </ul>
       {% if user.is_authenticated %}
+            <span class="pr-1">
+                <p class="my-2 my-sm-0 text-warning">{{exp}} exp</p>
+            </span>
             <span>
-                <a class="btn btn-warning my-2 my-sm-0" href="{% url 'user' %}">Аккаунт</a>
+                <a class="btn btn-warning my-2 my-sm-0" href="{% url 'user' %}">{{username}}</a>
             </span>
       {% else %}
             <span>

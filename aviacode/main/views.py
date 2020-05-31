@@ -1,6 +1,5 @@
 from django.shortcuts import render
 from .models import Task, Category, Comment
-from .forms import CommentForm
 from django.views.generic import (
     ListView,
     DetailView,
@@ -17,7 +16,6 @@ from .code_processer.parse import Parser
 from . import rating
 
 
-progress = 0
 tasks_solve = set()
 
 
@@ -38,9 +36,8 @@ def home(request):
 
 
 def user(request):
-    global progress
-    context = {'progress': progress}
-    return render(request, 'main/user.html', context)
+    context = {"progress": User.objects.get(pk=request.user.id).profile}
+    return render(request, "main/user.html", context)
 
 
 class TaskDetailView(DetailView):
@@ -52,8 +49,7 @@ class TaskDetailView(DetailView):
 
         context = {}
 
-        stuff = get_object_or_404(
-            Task, id=self.kwargs["pk"])  # получаем id поста
+        stuff = get_object_or_404(Task, id=self.kwargs["pk"])  # получаем id поста
 
         article = stuff.article
         textarea = stuff.textarea
@@ -69,7 +65,6 @@ class TaskDetailView(DetailView):
         return context
 
     def post(self, request, *args, **kwargs):
-        global progress, tasks_solve
         context = self.get_context_data(*args, **kwargs)
 
         if request.user.is_authenticated:
@@ -89,21 +84,33 @@ class TaskDetailView(DetailView):
             context["result"],
             context["process_time"],
             context["output"],
-            context["memory"]
+            context["memory"],
         ) = parser.process_code()
         parser.delete_files()
 
         if context["result"] is None:
+            if context["memory"] is None:
+                context["memory"] = [1, 1]
             context["rating"] = rating.count(
-                context["process_time"], context["tests"].etalon_time, context["memory"][0], context["tests"].etalon_memory)
-            if context['output'] not in tasks_solve:
-                if str(Task.objects.get(pk=self.kwargs["pk"]).lvl) == 'easy':
-                    progress += 10
-                elif str(Task.objects.get(pk=self.kwargs["pk"]).lvl) == 'medium':
-                    progress += 20
+                context["process_time"],
+                context["tests"].etalon_time,
+                context["memory"][0],
+                context["tests"].etalon_memory,
+            )
+            if context["output"] not in tasks_solve:
+                if str(Task.objects.get(pk=self.kwargs["pk"]).lvl) == "easy":
+                    user = User.objects.get(pk=request.user.id)
+                    user.profile.progress = user.profile.progress + 10
+                    user.save()
+                elif str(Task.objects.get(pk=self.kwargs["pk"]).lvl) == "medium":
+                    user = User.objects.get(pk=request.user.id)
+                    user.profile.progress = user.profile.progress + 20
+                    user.save()
                 else:
-                    progress += 30
-                tasks_solve.add(context['output'])
+                    user = User.objects.get(pk=request.user.id)
+                    user.profile.progress = user.profile.progress + 30
+                    user.save()
+                tasks_solve.add(context["output"])
         else:
             context["rating"] = "F"
 
@@ -111,8 +118,7 @@ class TaskDetailView(DetailView):
 
     def get(self, request, *args, **kwargs):
         return render(
-            request, self.template_name, context=self.get_context_data(
-                *args, **kwargs)
+            request, self.template_name, context=self.get_context_data(*args, **kwargs)
         )
 
 
@@ -149,8 +155,7 @@ class TaskCommentView(DetailView):
         context = {}
 
         context["form"] = CommentForm()
-        context["comments"] = Comment.objects.filter(
-            article__id=self.kwargs["pk"])
+        context["comments"] = Comment.objects.filter(article__id=self.kwargs["pk"])
         return context
 
     def post(self, request, *args, **kwargs):

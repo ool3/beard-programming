@@ -26,7 +26,7 @@ SECRET_KEY = "vy422$1339b_m1lrvd4r)53!li&c!oj)d*@jymqfypbdtz7-^@"
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['aircode.pythonanywhere.com']
+ALLOWED_HOSTS = ["aircode.pythonanywhere.com", "127.0.0.1"]
 
 
 # Application definition
@@ -65,6 +65,7 @@ TEMPLATES = [
                 "django.template.context_processors.request",
                 "django.contrib.auth.context_processors.auth",
                 "django.contrib.messages.context_processors.messages",
+                "main.context_processors.add_variable_to_context",
             ],
         },
     },
