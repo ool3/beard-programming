@@ -97,7 +97,7 @@ class TaskDetailView(DetailView):
                 context["memory"][0],
                 context["tests"].etalon_memory,
             )
-            if context["output"] not in tasks_solve:
+            if context["output"] not in tasks_solve and request.user.is_authenticated:
                 if str(Task.objects.get(pk=self.kwargs["pk"]).lvl) == "easy":
                     user = User.objects.get(pk=request.user.id)
                     user.profile.progress = user.profile.progress + 10
