@@ -26,7 +26,7 @@ SECRET_KEY = "vy422$1339b_m1lrvd4r)53!li&c!oj)d*@jymqfypbdtz7-^@"
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['aircode.pythonanywhere.com']
 
 
 # Application definition

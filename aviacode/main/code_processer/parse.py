@@ -44,6 +44,25 @@ class Parser:
 
         self.code_file_path = f"{self.folder}/{self.filename}"
 
+        if True:
+            code +='''
+    from typing import Union
+    import resource
+
+    def humanize_bytes(num, suffix='B'):
+        for unit in ['', 'K', 'M', 'G', 'T', 'P', 'E', 'Z']:
+            if abs(num) < 1024.0:
+                return "%3.1f%s%s" % (num, unit, suffix)
+            num /= 1024.0
+        return "%.1f%s%s" % (num, 'Yi', suffix)
+
+    def process_ram_usage(human_readable: bool = True) -> Union[str, int]:
+        bytes_ram = resource.getrusage(resource.RUSAGE_SELF).ru_maxrss
+        return bytes_ram if not human_readable else humanize_bytes(bytes_ram)
+
+    return(process_ram_usage(human_readable=True))
+        '''
+
         if not os.path.exists(os.path.dirname(self.code_file_path)):
             try:
                 os.makedirs(os.path.dirname(self.code_file_path))
@@ -63,11 +82,13 @@ class Parser:
         return tuple of:
                 process_result is None,
                 process_time in str,
-                process_output is  str
+                process_output is  str,
+                memory_usage in str
             if Exception return:
                 exception in str,
                 process_time in None,
-                process_output is None
+                process_output is None,
+                memory_usage is None
         if process run latter then 5 seconds rise TimeoutError
         """
 
@@ -78,26 +99,30 @@ class Parser:
 
         try:
 
-            module_path = self.code_file_path.replace("/", ".").replace(".py", "")
+            module_path = self.code_file_path.replace(
+                "/", ".").replace(".py", "")
 
             test_module = importlib.import_module(module_path)
 
             time_start = Decimal(time.perf_counter())
 
-            process_result = test_module.tests()
+            memory_usage = test_module.tests()
 
             process_time = str(Decimal(time.perf_counter()) - time_start)
+
+            process_result = None
 
         except Exception as e:
             process_result = e
             process_time = None
+            memory_usage = None
 
         sys.stdout = orig_stdout
         output.close()
         with open(self.output_path, "r") as file:
             process_output = file.read().replace("\n", "")
 
-        return process_result, process_time, process_output
+        return process_result, process_time, process_output, memory_usage
 
     def delete_files(self):
         os.remove(self.code_file_path)
