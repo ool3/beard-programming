@@ -60,7 +60,7 @@ class Parser:
         bytes_ram = resource.getrusage(resource.RUSAGE_SELF).ru_maxrss
         return (bytes_ram, humanize_bytes(bytes_ram))
 
-    return(process_ram_usage(human_readable=True))
+    return(process_ram_usage())
         '''
 
         if not os.path.exists(os.path.dirname(self.code_file_path)):
