@@ -54,6 +54,7 @@ class TaskDetailView(DetailView):
         context["examples"] = examples
         context["asserts"] = tests.asserts
         context["next_task"] = kwargs["pk"] + 1
+        context["tests"] = tests
         return context
 
     def post(self, request, *args, **kwargs):
