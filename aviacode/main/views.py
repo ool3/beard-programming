@@ -17,6 +17,9 @@ from .code_processer.parse import Parser
 from . import rating
 
 
+progress = 0
+tasks_solve = set()
+
 def new_tasks(request):
     post_easy = Task.objects.filter(lvl__name="easy").order_by("-id")[:2]
     post_medium = Task.objects.filter(lvl__name="medium").order_by("-id")[:2]
@@ -32,6 +35,10 @@ def new_tasks(request):
 def home(request):
     return render(request, "main/home.html")
 
+def user(request):
+    global progress
+    context = {'progress': progress}
+    return render(request, 'main/user.html', context)
 
 class TaskDetailView(DetailView):
     model = Task
@@ -58,6 +65,7 @@ class TaskDetailView(DetailView):
         return context
 
     def post(self, request, *args, **kwargs):
+        global progress, tasks_solve
         context = self.get_context_data(*args, **kwargs)
 
         if request.user.is_authenticated:
@@ -83,12 +91,15 @@ class TaskDetailView(DetailView):
         MEM = 0
 
         if context["result"] is None:
-            context["rating"] = rating.count(
-                context["process_time"],
-                context["tests"].etalon_time,
-                MEM,
-                context["tests"].etalon_memory,
-            )
+            context["rating"] = rating.count(context["process_time"], context["tests"].etalon_time, context["tests"].etalon_memory, MEM)
+            if context['output'] not in tasks_solve:
+                if str(Task.objects.get(pk=self.kwargs["pk"]).lvl) == 'easy':
+                    progress += 10
+                elif str(Task.objects.get(pk=self.kwargs["pk"]).lvl) == 'medium':
+                    progress += 20 
+                else:
+                    progress += 30
+                tasks_solve.add(context['output'])
         else:
             context["rating"] = "F"
 

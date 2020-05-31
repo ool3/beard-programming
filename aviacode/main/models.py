@@ -4,7 +4,12 @@ from django.urls import reverse
 from django.contrib import admin
 import datetime
 
+class Profile(models.Model):
+    author = models.ForeignKey(User, on_delete=models.CASCADE, default=1)
 
+    def __str__(self):
+        return "%s" % self.title
+        
 class Category(models.Model):
     name = models.CharField(max_length=40)
 

@@ -42,7 +42,7 @@
     </ul>
       {% if user.is_authenticated %}
             <span>
-                <a class="btn btn-warning my-2 my-sm-0" href="#">Аккаунт</a>
+                <a class="btn btn-warning my-2 my-sm-0" href="{% url 'user' %}">Аккаунт</a>
             </span>
       {% else %}
             <span>
