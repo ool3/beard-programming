@@ -39,8 +39,11 @@
                         {% block task_name %}{{article}}{% endblock task_name %}
                     </div>
                     <div class="row">
+                        <p>В вашем решении должен быть метод "main", он являеться входной точкой.</p>
+                    </div>
+                    <div class="row">
                         {% csrf_token %}
-                        <textarea id="code-area" type="text" name="code" style="width:  100%;height: 200px;">{{ code }}</textarea>
+                        <textarea id="code-area" type="text" name="code" style="width:  100%;height: 300px;">{{ code }}</textarea>
                     </div>
                     <div class="row">
                         <a href="/task_template/{{ next_task }}/" class="col bottom-code-bar">
@@ -50,7 +53,7 @@
                             Комментировать
                         </a>
                         <a href="solution/" class="col bottom-code-bar">
-                            показать решение
+                            Показать решение
                         </a>
                         <input style="margin: 0 auto; border: none; width: 100%;" class="bottom-code-bar" type="submit" value="Отправить">
                     </div>
