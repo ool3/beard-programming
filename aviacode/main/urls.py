@@ -7,6 +7,7 @@ from .views import (
     posts_hard,
     home,
     TaskCommentView,
+    task_solution,
 )
 
 urlpatterns = [
@@ -17,6 +18,7 @@ urlpatterns = [
         TaskCommentView.as_view(),
         name="task_comment",
     ),
+    path("task_template/<int:pk>/solution/", task_solution),
     path("easy/", posts_easy, name="easy"),
     path("somewhat/", posts_somewhat, name="somewhat"),
     path("hard/", posts_hard, name="hard"),
