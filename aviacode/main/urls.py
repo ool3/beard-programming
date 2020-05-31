@@ -8,7 +8,7 @@ from .views import (
     home,
     TaskCommentView,
     task_solution,
-    user
+    user,
 )
 
 urlpatterns = [
@@ -21,7 +21,7 @@ urlpatterns = [
     ),
     path("task_template/<int:pk>/solution/", task_solution),
     path("easy/", posts_easy, name="easy"),
-    path('user/', user, name='user'),
+    path("user/", user, name="user"),
     path("somewhat/", posts_somewhat, name="somewhat"),
     path("hard/", posts_hard, name="hard"),
     path("new_tasks/", new_tasks, name="new_tasks"),

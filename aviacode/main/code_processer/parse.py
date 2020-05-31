@@ -45,7 +45,7 @@ class Parser:
         self.code_file_path = f"{self.folder}/{self.filename}"
 
         if True:
-            code +='''
+            code += """
     from typing import Union
     import resource
 
@@ -61,7 +61,7 @@ class Parser:
         return (bytes_ram, humanize_bytes(bytes_ram))
 
     return(process_ram_usage())
-        '''
+        """
 
         if not os.path.exists(os.path.dirname(self.code_file_path)):
             try:
@@ -99,8 +99,7 @@ class Parser:
 
         try:
 
-            module_path = self.code_file_path.replace(
-                "/", ".").replace(".py", "")
+            module_path = self.code_file_path.replace("/", ".").replace(".py", "")
 
             test_module = importlib.import_module(module_path)
 
