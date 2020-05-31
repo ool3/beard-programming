@@ -16,7 +16,7 @@
                         <div class="p-3 mb-2 bg-light text-dark" style="border-radius: 18px;">  {{textarea}}
                             <br><br>
                         <div class="p-3 mb-2 bg-dark text-light" style="border-radius: 30px;">  Примеры:<br>{{examples|safe}}</div>
-                        <div class="p-3 mb-2 bg-dark text-light" style="border-radius: 30px;">  Тесты:<br>{{asserts|linebreaks }}</div>
+                        <div class="p-3 mb-2 bg-dark text-light" style="border-radius: 30px;">  Тесты:<br><code data-language="Pytohn">{{asserts|linebreaks }}</code></div>
 
                             {% endblock task_text %}
                         </div>
@@ -29,8 +29,9 @@
                     <div class="p-3 mb-2 text-dark" style="border-radius:   18px;background-color: #bcbe4a;">Время выполнения: {{ process_time }} сек</div>{% endif %}
                     {% if output %}
                     <div class="p-3 mb-2 text-dark" style="border-radius:   18px;background-color: #acb484;">Принты: {{ output }}</div>{% endif %}
-
+                    {% if process_time %}
                     <div class="p-3 mb-2 text-dark" style="border-radius:   18px;background-color: {% if rating == 'F'  %}#c28d8d;{% endif %} {% if rating == 'E'  %}#F1C40F;{% endif %} {% if rating == 'D'  %}#48C9B0;{% endif %} {% if rating == 'C'  %}#229954;{% endif %} {% if rating == 'B'  %}#229954;{% endif %} {% if rating == 'A'  %}#239B56;{% endif %}">Оценка: {{ rating }}</div>
+                    {% endif %}
 
                 </div>
                 <div class="col-md-5 code_bar">
