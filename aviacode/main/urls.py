@@ -6,11 +6,17 @@ from .views import (
     posts_somewhat,
     posts_hard,
     home,
+    TaskCommentView,
 )
 
 urlpatterns = [
     path("", home, name="home"),
     path("task_template/<int:pk>/", TaskDetailView.as_view(), name="task_template"),
+    path(
+        "task_template/<int:pk>/comments/",
+        TaskCommentView.as_view(),
+        name="task_comment",
+    ),
     path("easy/", posts_easy, name="easy"),
     path("somewhat/", posts_somewhat, name="somewhat"),
     path("hard/", posts_hard, name="hard"),

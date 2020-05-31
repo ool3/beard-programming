@@ -53,8 +53,6 @@ class TaskDetailView(DetailView):
         context["textarea"] = textarea
         context["examples"] = examples
         context["asserts"] = tests.asserts
-        context["comments"] = Comment.objects.all()
-        context["form"] = CommentForm()
         return context
 
     def post(self, request, *args, **kwargs):
@@ -65,22 +63,6 @@ class TaskDetailView(DetailView):
         else:
             username = None
 
-        # comment post
-        if request.POST.get("code") is None:
-            form = CommentForm(request.POST)
-            if form.is_valid():
-                correct_tusk = Task.objects.get(pk=self.kwargs["pk"])
-                correct_author = User.objects.get(pk=request.user.id)
-                comment = Comment(
-                    article=correct_tusk,
-                    author=correct_author,
-                    comment_text=request.POST.get("comment_text"),
-                )
-                comment.save()
-
-            return render(request, self.template_name, context=context)
-
-        # code post
         parser = Parser(username)
         code = request.POST.get("code")
         asserts = context["asserts"]
@@ -139,3 +121,35 @@ def posts_hard(request):
         "post": post,
     }
     return render(request, "main/hard.html", context)
+
+
+class TaskCommentView(DetailView):
+    template_name = "main/tasks_comment.html"
+
+    def get_context_data(self, *args, **kwargs):
+
+        context = {}
+
+        context["form"] = CommentForm()
+        context["comments"] = Comment.objects.filter(article__id=self.kwargs["pk"])
+        return context
+
+    def post(self, request, *args, **kwargs):
+        form = CommentForm(request.POST)
+        if form.is_valid():
+            correct_tusk = Task.objects.get(pk=self.kwargs["pk"])
+            correct_author = User.objects.get(pk=request.user.id)
+            comment = Comment(
+                article=correct_tusk,
+                author=correct_author,
+                comment_text=request.POST.get("comment_text"),
+            )
+            comment.save()
+
+        context = self.get_context_data(*args, **kwargs)
+
+        return render(request, self.template_name, context=context)
+
+    def get(self, request, *args, **kwargs):
+        context = self.get_context_data(*args, **kwargs)
+        return render(request, self.template_name, context=context)

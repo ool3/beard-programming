@@ -46,7 +46,7 @@
                         <a href="#" class="col bottom-code-bar">
                             Пропустить
                         </a>
-                        <a href="#" class="col bottom-code-bar">
+                        <a href="comments/" class="col bottom-code-bar">
                             Комментировать
                         </a>
                         <a href="#" class="col bottom-code-bar">
@@ -57,21 +57,6 @@
                 </div>
             </div>
         </form>
-        <div class="comments">
-            {% if user.is_authenticated %}
-                <form method="post">
-                    {% csrf_token %}
-                    {{ form }}
-                    <input type="submit" value="OK">
-                </form>
-            {% endif %}
-            {% for content in comments%}
-            <div>
-                {{ content.author }}
-                {{ content.comment_text }}
-            </div>
-            {% endfor %}
-        </div>
         </div>
 <br><br><br><br><br><br>
     </div>
