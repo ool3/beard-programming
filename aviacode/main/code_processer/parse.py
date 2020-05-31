@@ -56,9 +56,9 @@ class Parser:
             num /= 1024.0
         return "%.1f%s%s" % (num, 'Yi', suffix)
 
-    def process_ram_usage(human_readable: bool = True) -> Union[str, int]:
+    def process_ram_usage() -> Union[str, int]:
         bytes_ram = resource.getrusage(resource.RUSAGE_SELF).ru_maxrss
-        return bytes_ram if not human_readable else humanize_bytes(bytes_ram)
+        return (bytes_ram, humanize_bytes(bytes_ram))
 
     return(process_ram_usage(human_readable=True))
         '''

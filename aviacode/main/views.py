@@ -95,7 +95,7 @@ class TaskDetailView(DetailView):
 
         if context["result"] is None:
             context["rating"] = rating.count(
-                context["process_time"], context["tests"].etalon_time, context["memory"], context["tests"].etalon_memory)
+                context["process_time"], context["tests"].etalon_time, context["memory"][0], context["tests"].etalon_memory)
             if context['output'] not in tasks_solve:
                 if str(Task.objects.get(pk=self.kwargs["pk"]).lvl) == 'easy':
                     progress += 10
