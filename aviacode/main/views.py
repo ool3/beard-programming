@@ -1,5 +1,6 @@
 from django.shortcuts import render
-from .models import Task, Category
+from .models import Task, Category, Comment
+from .forms import CommentForm
 from django.views.generic import (
     ListView,
     DetailView,
@@ -10,6 +11,7 @@ from django.views.generic import (
 from django.urls import reverse_lazy, reverse
 from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponseRedirect, Http404
+from django.contrib.auth.models import User
 
 from .code_processer.parse import Parser
 from . import rating
@@ -37,7 +39,6 @@ class TaskDetailView(DetailView):
 
     def get_context_data(self, *args, **kwargs):
         cat_menu = Category.objects.all()
-        # context = super(TaskDetailView, self).get_context_data(*args, **kwargs)
 
         context = {}
 
@@ -47,11 +48,13 @@ class TaskDetailView(DetailView):
         textarea = stuff.textarea
         examples = stuff.examples
         tests = stuff.tests
+
         context["article"] = article
         context["textarea"] = textarea
         context["examples"] = examples
         context["asserts"] = tests.asserts
-        context["tests"] = tests
+        context["comments"] = Comment.objects.all()
+        context["form"] = CommentForm()
         return context
 
     def post(self, request, *args, **kwargs):
@@ -62,6 +65,22 @@ class TaskDetailView(DetailView):
         else:
             username = None
 
+        # comment post
+        if request.POST.get("code") is None:
+            form = CommentForm(request.POST)
+            if form.is_valid():
+                correct_tusk = Task.objects.get(pk=self.kwargs["pk"])
+                correct_author = User.objects.get(pk=request.user.id)
+                comment = Comment(
+                    article=correct_tusk,
+                    author=correct_author,
+                    comment_text=request.POST.get("comment_text"),
+                )
+                comment.save()
+
+            return render(request, self.template_name, context=context)
+
+        # code post
         parser = Parser(username)
         code = request.POST.get("code")
         asserts = context["asserts"]

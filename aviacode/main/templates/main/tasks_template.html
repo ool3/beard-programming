@@ -57,6 +57,21 @@
                 </div>
             </div>
         </form>
+        <div class="comments">
+            {% if user.is_authenticated %}
+                <form method="post">
+                    {% csrf_token %}
+                    {{ form }}
+                    <input type="submit" value="OK">
+                </form>
+            {% endif %}
+            {% for content in comments%}
+            <div>
+                {{ content.author }}
+                {{ content.comment_text }}
+            </div>
+            {% endfor %}
+        </div>
         </div>
 <br><br><br><br><br><br>
     </div>
